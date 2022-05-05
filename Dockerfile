@@ -1,6 +1,4 @@
-ARG GOLANG_VERSION
-ARG ALPINE_VERSION
-FROM golang:${GOLANG_VERSION}-alpine${ALPINE_VERSION} as builder
+FROM golang:1.17.9-alpine3.15 as builder
 
 RUN apk --no-cache add make gcc musl-dev binutils-gold
 
@@ -10,7 +8,7 @@ WORKDIR /app
 RUN make build
 
 
-FROM alpine:${ALPINE_VERSION}
+FROM alpine:3.15
 
 LABEL maintainer="community@krakend.io"
 

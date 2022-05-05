@@ -4,8 +4,6 @@ steps:
       - build
       - '--no-cache'
       - '--pull'
-      - '--build-arg GOLANG_VERSION=$_GOLANG_VERSION'
-      - '--build-arg ALPINE_VERSION=$_ALPINE_VERSION'
       - '-t'
       - '$_GCR_HOSTNAME/$PROJECT_ID/$_CONTAINER_REPO_NAME/$REPO_NAME:$_VERSION'
       - '.'
