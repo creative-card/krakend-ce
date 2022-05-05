@@ -1,0 +1,33 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '--no-cache'
+      - '--pull'
+      - '--build-arg GOLANG_VERSION=$_GOLANG_VERSION'
+      - '--build-arg ALPINE_VERSION=$_ALPINE_VERSION'
+      - '-t'
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$_CONTAINER_REPO_NAME/$REPO_NAME:$_VERSION'
+      - '.'
+    id: Build
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$_CONTAINER_REPO_NAME/$REPO_NAME:$_VERSION'
+    id: Push
+    entrypoint: gcloud
+timeout: 1600s
+images:
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$_CONTAINER_REPO_NAME/$REPO_NAME:$_VERSION'
+options:
+  substitutionOption: ALLOW_LOOSE
+substitutions:
+  _DEPLOY_REGION: us-central1
+  _GCR_HOSTNAME: us-central1-docker.pkg.dev
+  _CONTAINER_REPO_NAME: katalista-container-repo-dev
+  _GOLANG_VERSION: '1.17.9'
+  _ALPINE_VERSION: '3.15'
+  _VERSION: '2.0.4'
+tags:
+  - gcp-cloud-build
+  - krakend-ce
