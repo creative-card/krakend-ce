@@ -15,7 +15,7 @@ URL := http://krakend.io
 RELEASE := 0
 USER := krakend
 ARCH := amd64
-DESC := High performance API gateway. Aggregate, filter, manipulate and add middlewares
+DESC := High performance API gateway adapted for Katalista.
 MAINTAINER := Daniel Ortiz <dortiz@krakend.io>
 DOCKER_WDIR := /tmp/fpm
 DOCKER_FPM := devopsfaith/fpm
@@ -79,6 +79,7 @@ update_krakend_deps:
 	go get github.com/devopsfaith/krakend-usage@v1.4.0
 	go get github.com/devopsfaith/krakend-viper/v2@v2.0.0
 	go get github.com/devopsfaith/krakend-xml/v2@v2.0.0
+	go get github.com/creative-card/krakend-oauth2-googlecloud/v2@v2.0.0
 	make test
 
 
@@ -100,12 +101,12 @@ build_on_docker:
 
 # Build the container using the Dockerfile (alpine)
 docker:
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t devopsfaith/krakend:${VERSION} .
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t creative-card/krakend:${VERSION} .
 
 benchmark:
 	@mkdir -p bench_res
 	@touch bench_res/${GIT_COMMIT}.out
-	@docker run --rm -d --name krakend -v "${PWD}/tests/fixtures:/etc/krakend" -p 8080:8080 devopsfaith/krakend:${VERSION} run -dc /etc/krakend/bench.json
+	@docker run --rm -d --name krakend -v "${PWD}/tests/fixtures:/etc/krakend" -p 8080:8080 creative-card/krakend:${VERSION} run -dc /etc/krakend/bench.json
 	@sleep 2
 	@docker run --rm -it --link krakend peterevans/vegeta sh -c \
 		"echo 'GET http://krakend:8080/test' | vegeta attack -rate=0 -duration=30s -max-workers=300 | tee results.bin | vegeta report" > bench_res/${GIT_COMMIT}.out
@@ -115,7 +116,7 @@ benchmark:
 security_scan:
 	@mkdir -p sec_scan
 	@touch sec_scan/${GIT_COMMIT}.out
-	@docker run --rm -d --name krakend -v "${PWD}/tests/fixtures:/etc/krakend" -p 8080:8080 devopsfaith/krakend:${VERSION} run -dc /etc/krakend/bench.json
+	@docker run --rm -d --name krakend -v "${PWD}/tests/fixtures:/etc/krakend" -p 8080:8080 creative-card/krakend:${VERSION} run -dc /etc/krakend/bench.json
 	@docker run --rm -it --link krakend instrumentisto/nmap --script vuln krakend > sec_scan/${GIT_COMMIT}.out
 	@docker stop krakend
 	@cat sec_scan/${GIT_COMMIT}.out
