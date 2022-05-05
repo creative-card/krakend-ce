@@ -21,7 +21,7 @@ import (
 	"github.com/luraproject/lura/v2/proxy"
 	"github.com/luraproject/lura/v2/transport/http/client"
 	httprequestexecutor "github.com/luraproject/lura/v2/transport/http/client/plugin"
-	oauth2jwt "github.com/creative-card/krakend-oauth2-googlecloud/v2"
+	oauth2googleclient "github.com/creative-card/krakend-oauth2-googlecloud/v2"
 )
 
 // NewBackendFactory creates a BackendFactory by stacking all the available middlewares:
@@ -46,8 +46,8 @@ func NewBackendFactoryWithContext(ctx context.Context, logger logging.Logger, me
 		clientFactory := client.NewHTTPClient
 		if _, ok := cfg.ExtraConfig[oauth2client.Namespace]; ok {
 			clientFactory = oauth2client.NewHTTPClient(cfg)
-		} else if _, ok := cfg.ExtraConfig[oauth2jwt.Namespace]; ok {
-			clientFactory = oauth2jwt.NewHTTPClient(cfg)
+		} else if _, ok := cfg.ExtraConfig[oauth2googleclient.Namespace]; ok {
+			clientFactory = oauth2googleclient.NewHTTPClient(cfg)
 		} else {
 			clientFactory = httpcache.NewHTTPClient(cfg, clientFactory)
 		}

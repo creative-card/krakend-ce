@@ -79,7 +79,7 @@ update_krakend_deps:
 	go get github.com/devopsfaith/krakend-usage@v1.4.0
 	go get github.com/devopsfaith/krakend-viper/v2@v2.0.0
 	go get github.com/devopsfaith/krakend-xml/v2@v2.0.0
-	go get github.com/creative-card/krakend-oauth2-googlecloud/v2@v2.0.0
+	go get github.com/creative-card/krakend-oauth2-googlecloud/v2@v2.0.1
 	make test
 
 

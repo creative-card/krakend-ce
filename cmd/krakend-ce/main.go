@@ -72,6 +72,7 @@ var aliases = map[string]string{
 	"github.com/devopsfaith/krakend-httpcache":                "qos/http-cache",
 	"github.com/devopsfaith/krakend-circuitbreaker/gobreaker": "qos/circuit-breaker",
 
+	"github.com/creative-card/krakend-oauth2-googlecloud":     "auth/googlecloud",
 	"github.com/devopsfaith/krakend-oauth2-clientcredentials": "auth/client-credentials",
 	"github.com/devopsfaith/krakend-jose/validator":           "auth/validator",
 	"github.com/devopsfaith/krakend-jose/signer":              "auth/signer",
@@ -106,7 +107,4 @@ var aliases = map[string]string{
 	"github.com/devopsfaith/krakend-lua/proxy":         "modifier/lua-proxy",
 	"github.com/devopsfaith/krakend-lua/proxy/backend": "modifier/lua-backend",
 	"github.com/devopsfaith/krakend-martian":           "modifier/martian",
-
-	//Katalista
-	"github.com/creative-card/krakend-oauth2-googlecloud": "auth/googlecloud",
 }
