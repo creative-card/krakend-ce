@@ -3,12 +3,13 @@ module github.com/devopsfaith/krakend-ce/v2
 go 1.17
 
 require (
+	github.com/creative-card/krakend-oauth2-googlecloud/v2 v2.0.0
 	github.com/devopsfaith/bloomfilter/v2 v2.0.0
 	github.com/devopsfaith/krakend-amqp/v2 v2.0.1
 	github.com/devopsfaith/krakend-botdetector/v2 v2.0.0
 	github.com/devopsfaith/krakend-cel/v2 v2.0.0
 	github.com/devopsfaith/krakend-circuitbreaker/v2 v2.0.0
-	github.com/devopsfaith/krakend-cobra/v2 v2.0.2
+	github.com/devopsfaith/krakend-cobra/v2 v2.0.1
 	github.com/devopsfaith/krakend-cors/v2 v2.0.0
 	github.com/devopsfaith/krakend-flexibleconfig/v2 v2.0.0
 	github.com/devopsfaith/krakend-gelf/v2 v2.0.0
@@ -16,7 +17,7 @@ require (
 	github.com/devopsfaith/krakend-httpcache/v2 v2.0.0
 	github.com/devopsfaith/krakend-httpsecure/v2 v2.0.0
 	github.com/devopsfaith/krakend-influx/v2 v2.0.0
-	github.com/devopsfaith/krakend-jose/v2 v2.0.2
+	github.com/devopsfaith/krakend-jose/v2 v2.0.1
 	github.com/devopsfaith/krakend-jsonschema/v2 v2.0.0
 	github.com/devopsfaith/krakend-lambda/v2 v2.0.0
 	github.com/devopsfaith/krakend-logstash/v2 v2.0.0
@@ -35,7 +36,6 @@ require (
 	github.com/go-contrib/uuid v1.2.0
 	github.com/luraproject/lura/v2 v2.0.4
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	github.com/creative-card/krakend-oauth2-googlecloud/v2 v2.0.0
 )
 
 require (

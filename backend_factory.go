@@ -21,8 +21,6 @@ import (
 	"github.com/luraproject/lura/v2/proxy"
 	"github.com/luraproject/lura/v2/transport/http/client"
 	httprequestexecutor "github.com/luraproject/lura/v2/transport/http/client/plugin"
-	
-	// Katalista
 	oauth2jwt "github.com/creative-card/krakend-oauth2-googlecloud/v2"
 )
 
@@ -48,10 +46,8 @@ func NewBackendFactoryWithContext(ctx context.Context, logger logging.Logger, me
 		clientFactory := client.NewHTTPClient
 		if _, ok := cfg.ExtraConfig[oauth2client.Namespace]; ok {
 			clientFactory = oauth2client.NewHTTPClient(cfg)
-		// Katalista start
 		} else if _, ok := cfg.ExtraConfig[oauth2jwt.Namespace]; ok {
 			clientFactory = oauth2jwt.NewHTTPClient(cfg)
-		// Katalista end
 		} else {
 			clientFactory = httpcache.NewHTTPClient(cfg, clientFactory)
 		}
