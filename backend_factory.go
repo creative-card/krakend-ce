@@ -52,7 +52,7 @@ func NewBackendFactoryWithContext(ctx context.Context, logger logging.Logger, me
 		} else if _, ok := cfg.ExtraConfig[oauth2jwt.Namespace]; ok {
 			clientFactory = oauth2jwt.NewHTTPClient(cfg)
 		// Katalista end
-		} else {1
+		} else {
 			clientFactory = httpcache.NewHTTPClient(cfg, clientFactory)
 		}
 		return opencensus.HTTPRequestExecutorFromConfig(clientFactory, cfg)
