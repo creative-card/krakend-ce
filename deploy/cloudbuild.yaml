@@ -13,7 +13,6 @@ steps:
       - push
       - '$_GCR_HOSTNAME/$PROJECT_ID/$_CONTAINER_REPO_NAME/$REPO_NAME:$_VERSION'
     id: Push
-    entrypoint: gcloud
 timeout: 1600s
 images:
   - '$_GCR_HOSTNAME/$PROJECT_ID/$_CONTAINER_REPO_NAME/$REPO_NAME:$_VERSION'
